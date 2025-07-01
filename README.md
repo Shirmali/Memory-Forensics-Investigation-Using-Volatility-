@@ -56,49 +56,71 @@ This project demonstrates the installation and usage of [Volatility 3](https://g
 ✅ **Add Python to PATH**
 
 To verify:
-<pre> ```powershell python --version ``` </pre>
+```powershell python --version ```
 
 
 ---
 3. Install Required Dependencies
 Navigate to the volatility3 folder and run:
 
-<pre> ```powershell cd C:\Users\Administrator\Downloads\volatility3\volatility3-develop pip install -r requirements.txt ``` </pre>
+```powershell cd C:\Users\Administrator\Downloads\volatility3\volatility3-develop pip install -r requirements.txt ``` 
 
 ---
 ✅ My Preferred Setup: Running Volatility as vol
+
 To simplify usage, I created a global shortcut to run vol.py from any PowerShell window using just vol.
 
 🔧 Create a Shortcut (vol.bat)
 1. Create a folder:
 
-<pre> ```makefile C:\Tools\ ``` </pre>
+```makefile C:\Tools\ ```
 
 ---
 
 2. Inside it, create a file named vol.bat with the following contents:
 
-<pre> ``` bat @echo off
-python "C:\Users\Administrator\Downloads\volatility3\volatility3-develop\vol.py" %* ``` </pre>
-                                                                                      
+## 🛠️ Setting Up Volatility 3 with a Custom `vol` Command
 
 ---
 
-3. Add C:\Tools\ to your System PATH:
+### 1. Create a Batch File
 
-Open System Properties > Environment Variables
+Inside `C:\Tools`, create a file named `vol.bat` with the following contents:
 
-Under System Variables, edit Path and add:
-
-<pre> ```makefile C:\Tools\ ``` </pre>
+```bat
+python "C:\Users\Administrator\Downloads\volatility3\volatility3-develop\vol.py" %*
+```
 
 ---
 
-4. Restart PowerShell and test:
+### 2. Add `C:\Tools\` to Your System PATH
 
-<pre> ```powershell vol -h ``` </pre>
-### 📁 Step 1: Identify the Memory Image Profile
+Go to:
+
+**System Properties > Environment Variables**
+
+Under **System Variables**, edit the **Path** variable and add:
+
+```plaintext
+C:\Tools\
+```
+
+---
+
+### 3. Restart PowerShell and Test
+
+```powershell
+vol -h
+```
+
+If everything is set correctly, this will return Volatility 3's help menu.
+
+---
+
+### 🧠 Step 4: Identify the Memory Image Profile
 
 **Command:**
+
 ```bash
-volatility -f memory.vmem imageinfo
+vol -f memory.vmem windows.info
+```
